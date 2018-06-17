@@ -1,0 +1,48 @@
+public class Solution {
+    public int[] solution(int[] arr) {
+          int[] answer = {};
+          int minInt = -1; // 제일 작은 정수의 값
+          int minIndex = -1; // 제일 작은 정수의 인덱스
+          int minFlag = 0;
+          // arr은 길이 2 이상인 배열
+          if(arr.length > 1) {
+              answer = new int[arr.length-1]; // 제일 작은 정수 1개를 제외한 배열을 리턴하므로 리턴배열의 크기를 arr.length-1만큼 할당
+              // 입력받은 배열에서 제일 작은 정수 찾기
+              for(int i=0;i<arr.length;i++) {
+                  if(i==0) { 
+                      minInt = arr[i];
+                      minIndex = i;
+                  }
+                  else if(arr[i] < minInt) {
+                      minInt = arr[i];
+                      minIndex = i;
+                  }
+              }
+
+              // 제일 작은 정수를 제외한 배열을 리턴
+              for(int j=0;j<arr.length;j++) {
+                  if(j==minIndex) { 
+                      minFlag = 1;
+                      continue;
+                  }
+                  else {
+                      answer[j-minFlag] = arr[j];
+                  }
+              }
+          }else { // 길이가 1 이하인 경우 -1을 리턴
+              answer = new int[1];
+              answer[0] = -1;
+          }
+          return answer;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        int[] arr= {4,3,2,1};
+        int[] answer = {};
+        answer = solution.solution(arr);
+        for(int i=0;i<answer.length;i++)
+            System.out.println(answer[i]);
+    }
+
+}
