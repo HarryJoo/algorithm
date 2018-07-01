@@ -1,0 +1,39 @@
+// you can also use imports, for example:
+// import java.util.*;
+
+// you can write to stdout for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+
+class Solution {
+    public int solution(int N) {
+        // write your code in Java SE 8
+        // N = 32; // Test N
+        int quotient = N; //몫
+        int remainder = 0; //나머지
+        int maxZeroCount = 0; //연속된 0의 최대길이(최종변수)
+        int tempZeroCount = 0; //연속된 0의 최대길이(임시변수)
+        boolean oneFlag = false; //나머지 값이 1일때마다 변경되는 플래그값
+        
+        while(0 != quotient){
+            remainder = quotient%2;
+            quotient = quotient/2;
+            //1에 둘러싸인 0의 갯수를 구하기 위해 플래그값 변경    
+            if(1 == remainder && false == oneFlag){
+                oneFlag = true;
+            }else if(1 == remainder && true == oneFlag && 0 != tempZeroCount){
+                //1이 닫히는경우 최대 0의 길이값 정산해야함
+                //나머지가 0인 경우 maxZeroCount와 tempZeroCount를 비교함
+                if(maxZeroCount < tempZeroCount){ //임시변수가 더 큰경우 maxZeroCount으로 재할당
+                    maxZeroCount = tempZeroCount;
+                }
+                tempZeroCount = 0; //임시변수를 0으로 재할당
+            }
+            //1의 범위안에 있는 0일 경우 tempZeroCount의 값을 증가
+            if(true == oneFlag && 0 == remainder){
+                tempZeroCount++;
+            }
+        }
+          //System.out.println("Test : " + maxZeroCount);
+        return maxZeroCount;
+    }
+}
