@@ -1,0 +1,20 @@
+class Solution {
+    public int[] solution(int[] A, int K) {
+        // write your code in Java SE 8
+        int[] R = new int[A.length]; //Result
+        if(A.length > 100 && A.length < 0){
+            System.out.println("배열 A의 길이는 0이상 100이하 입니다.");
+        }else if(K > 100 && K < 0){
+            System.out.println("배열 K의 길이는 0이상 100이하 입니다.");
+        }
+        
+        //배열A의 요소들이 K만큼 오른쪽으로 이동
+        int index = 0;
+        for(int i=0;i<A.length;i++){
+            index = (i+K)%A.length;
+            R[index] = A[i];
+        }
+    
+        return R;
+    }
+}
