@@ -1,0 +1,42 @@
+// you can also use imports, for example:
+// import java.util.*;
+
+// you can write to stdout for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+import java.lang.*;
+
+class Solution {
+    public int solution(int[] A) {
+        // write your code in Java SE 8
+        int lengthA = A.length;
+        if(lengthA < 2 || lengthA > 100000){
+            return 0;
+        }
+
+        int difference = 0;
+        
+        for(int p=1;p<lengthA;p++){
+            int firstPart = 0;
+            int secondPart = 0;
+            
+            for(int k=0;k<p;k++){
+                firstPart += A[k];
+            }
+            
+            for(int j=p;j<lengthA;j++){
+                secondPart += A[j];
+            }
+            
+            int absValue = Math.abs(firstPart - secondPart);
+            
+            if(p==1){
+                difference = absValue;
+            }
+            if(difference > absValue){
+                difference = absValue;
+            }
+
+        }
+        return difference;
+    }
+}
