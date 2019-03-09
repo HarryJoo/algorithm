@@ -1,0 +1,38 @@
+// you can also use imports, for example:
+// import java.util.*;
+
+// you can write to stdout for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+
+class Solution {
+    public int[] solution(int N, int[] A) {
+        // write your code in Java SE 8
+        
+        //N : number of counters
+        /*if(1 > N || N < 100000){
+            return null;
+        }*/
+
+        int [] n = new int[N];
+        int maxVal = 0; //maximum value for max counter
+        int maxK = 0; //maximum index K for max counter
+        
+        for(int K=0;K<A.length;K++){
+            int Y = A[K];
+            if(Y == (N+1)){
+                for(int i=0;i<n.length;i++){
+                    n[i] = maxVal;
+                }   
+            }else{
+                int X = Y - 1;
+                n[X] = n[X] + 1;
+                if(n[X] > maxVal){
+                    maxVal = n[X];
+                    maxK = K;
+                }
+            }
+        }
+        
+        return n;
+    }
+}
